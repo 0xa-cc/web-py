@@ -1,0 +1,208 @@
+1、新建表
+drop table tb_w_skus_limit_perday;
+create table tb_w_skus_limit_perday
+(
+   Sku                  varchar(64) not null comment '商品ID',
+   LimitNum         int not null default 0 comment '每天最多购买数量',
+   TodayNum       int not null default 0 comment '当天已购买数量',
+   recdate datetime comment '更新当天次数时间',
+   resetdate datetime comment '重置时间'
+)  ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '商品每天购买数量限制表';
+
+
+2、更新存储过程
+drop procedure pd_w_purchase;
+delimiter $$
+create procedure pd_w_purchase(out pResult int, out pMsg varchar(64), in pTradeNo varchar(64), in pUserID varchar(64), in pSku varchar(64), in pOriginalData varchar(1024), in pVipLevel int, out pAmountPurchased bigint, out pAmountCur bigint, out pSkuType varchar(64))
+begin
+    declare t_error int default 0; 
+    declare v_llAmount bigint default 0;
+    declare v_llFirstAmount bigint default 0;
+    declare v_llAmountBefore bigint default 0;
+    declare v_nCharged int default 0;
+    declare v_nTime int default 0;
+    declare v_timeExpire datetime;
+    declare v_nLevel int default 0;
+    declare v_nLimitNum int default -1;
+    declare v_nTodayNum int default -1;
+
+    DECLARE continue HANDLER FOR SQLEXCEPTION SET t_error = -1;
+    START TRANSACTION;
+    
+    #先查找购买数量是否超过限制
+    -- select LimitNum, TodayNum into v_nLimitNum, v_nTodayNum from tb_w_skus_limit_perday where Sku=pSku;
+    -- if v_nLimitNum > 0 and v_nTodayNum >= v_nLimitNum then
+    --     set pResult = 1;
+    --     set pMsg = "exceed limit";
+    -- else
+        select Amount into v_llAmount from tb_w_purchase where trade_no=pTradeNo;
+        if v_llAmount != 0 then
+            set pResult = 2;
+            set pMsg = "same trade no";
+            set pAmountPurchased = v_llAmount;
+            set pAmountCur = v_llAmountBefore+v_llAmount;
+        else
+            select count(*) into v_nCharged from tb_w_purchase where UserID=pUserID and skutype='coin';#是否购买过万能豆
+            select Amount,FirstAmount,Type into v_llAmount,v_llFirstAmount,pSkuType from tb_w_skus where Sku=pSku;
+            if v_nCharged = 0 then#首充
+                set v_llAmount = v_llFirstAmount;
+            end if;
+            if v_llAmount is not NULL and v_llAmount > 0 then
+                if pVipLevel > 0 then
+                    if v_nCharged > 0 then#是首充就用首充的数量，不是首充则用VIP数量
+                        select VipAmount into v_llAmount from tb_w_skus_for_vip where Sku=pSku and VipLevel=pVipLevel;#是VIP则用VIP的充值数量
+                    end if;
+                end if;
+
+                update tb_w_skus_limit_perday set TodayNum=TodayNum+1 where Sku=pSku;#更新当天已购买数量，此处必须在表中先配置数据，只更新不插入，不配置就不做数量限制
+
+                insert into tb_w_purchase (trade_no, UserID, Sku, skutype, Amount, original_data, recdate) values (pTradeNo, pUserID, pSku, pSkuType, v_llAmount, pOriginalData, now());
+                insert into tb_w_purchaselog (TimeStamp, UserID, ActionType, AmountBefore, AmountChange, AmountAfter, Remark) values (now(), pUserID, 1, v_llAmountBefore, v_llAmount, v_llAmountBefore+v_llAmount, concat('trade_no:',pTradeNo,',vip:',pVipLevel,',charged:',v_nCharged));                    
+                set pAmountCur = v_llAmountBefore+v_llAmount;
+                set pAmountPurchased = v_llAmount;
+                set pResult = 0;
+                set pMsg = "success";
+            else
+                set pResult = 4;
+                set pMsg = "can not find Amount of sku";
+            end if;
+        end if;
+    -- end if;
+
+    if t_error = 0 then
+        commit;
+    else
+        set pResult = t_error;
+        set pMsg = "sqlexception";
+        rollback;
+    end if;
+end $$
+delimiter ;
+
+
+
+3、初始化iPad商品数据
+delete from tb_w_skus where sku in (select sku from tb_w_skus_of_channel where channel="iPad");
+delete from tb_w_skus_for_vip where sku in (select sku from tb_w_skus_of_channel where channel="iPad");
+delete from tb_w_score_of_sku where sku in (select sku from tb_w_skus_of_channel where channel="iPad");
+delete from tb_w_skus_of_channel where channel="iPad";
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.06");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.06", 1, "","", "¥6.00", 6.00, "", "coin", "36000个万能豆", "", "", "", "36000", 36000, "", "", 36000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.06", 3);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.18");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.18", 1, "","", "¥18.00", 18.00, "", "coin", "108000个万能豆", "", "", "", "108000", 108000, "", "", 108000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.18", 5);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.30");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.30", 1, "","", "¥30.00", 30.00, "", "coin", "180000个万能豆", "", "", "", "180000", 180000, "", "", 180000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.30", 5);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.45");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.45", 1, "","", "¥45.00", 45.00, "", "coin", "270000个万能豆", "", "", "", "270000", 270000, "", "", 270000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.45", 5);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.108");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.108", 1, "","", "¥108.00", 108.00, "", "coin", "648000个万能豆", "", "", "", "648000", 648000, "", "", 648000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.108", 30);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.168");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.168", 1, "","", "¥168.00", 168.00, "", "coin", "1008000个万能豆", "", "", "", "1008000", 1008000, "", "", 1008000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.168", 30);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.288");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.288", 1, "","", "¥288.00", 288.00, "", "coin", "1728000个万能豆", "", "", "", "1728000", 1728000, "", "", 1728000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.288", 100);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.588");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.588", 1, "","", "¥588.00", 588.00, "", "coin", "3528000个万能豆", "", "", "", "3528000", 3528000, "", "", 3528000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.588", 300);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.998");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.998", 1, "","", "¥998.00", 998.00, "", "coin", "5988000个万能豆", "", "", "", "5988000", 5988000, "", "", 5988000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.998", 300);
+
+
+update tb_w_skus set Visible=1, Image="shop_icon_jszplb.png" where Sku="iPad.LZDZPK.06";
+update tb_w_skus set Visible=1, Image="shop_icon_sxcylb.png" where Sku="iPad.LZDZPK.18";
+update tb_w_skus set Visible=1, Image="shop_icon_jwjlb.png" where Sku="iPad.LZDZPK.30";
+update tb_w_skus set Visible=1, Image="shop_icon_cxmjlb.png" where Sku="iPad.LZDZPK.45";
+update tb_w_skus set Visible=1, Image="shop_icon_zjlb.png" where Sku="iPad.LZDZPK.108";
+update tb_w_skus set Visible=1, Image="shop_icon_whyxlb.png" where Sku="iPad.LZDZPK.168";
+update tb_w_skus set Visible=1, Image="shop_icon_gwjxlb.png" where Sku="iPad.LZDZPK.288";
+update tb_w_skus set Visible=1, Image="shop_icon_wzlb.png" where Sku="iPad.LZDZPK.588";
+update tb_w_skus set Visible=1, Image="shop_icon_cjzzlb.png" where Sku="iPad.LZDZPK.998";
+
+
+
+4、初始化iPhone商品数据
+delete from tb_w_skus where sku in (select sku from tb_w_skus_of_channel where channel="iPhone");
+delete from tb_w_skus_for_vip where sku in (select sku from tb_w_skus_of_channel where channel="iPhone");
+delete from tb_w_score_of_sku where sku in (select sku from tb_w_skus_of_channel where channel="iPhone");
+delete from tb_w_skus_of_channel where channel="iPhone";
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.06");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.06", 1, "","", "¥6.00", 6.00, "", "coin", "36000个万能豆", "", "", "", "36000", 36000, "", "", 36000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.06", 3);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.18");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.18", 1, "","", "¥18.00", 18.00, "", "coin", "108000个万能豆", "", "", "", "108000", 108000, "", "", 108000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.18", 5);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.30");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.30", 1, "","", "¥30.00", 30.00, "", "coin", "180000个万能豆", "", "", "", "180000", 180000, "", "", 180000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.30", 5);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.45");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.45", 1, "","", "¥45.00", 45.00, "", "coin", "270000个万能豆", "", "", "", "270000", 270000, "", "", 270000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.45", 5);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.108");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.108", 1, "","", "¥108.00", 108.00, "", "coin", "648000个万能豆", "", "", "", "648000", 648000, "", "", 648000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.108", 30);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.168");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.168", 1, "","", "¥168.00", 168.00, "", "coin", "1008000个万能豆", "", "", "", "1008000", 1008000, "", "", 1008000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.168", 30);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.288");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.288", 1, "","", "¥288.00", 288.00, "", "coin", "1728000个万能豆", "", "", "", "1728000", 1728000, "", "", 1728000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.288", 100);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.588");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.588", 1, "","", "¥588.00", 588.00, "", "coin", "3528000个万能豆", "", "", "", "3528000", 3528000, "", "", 3528000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.588", 300);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.998");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.998", 1, "","", "¥998.00", 998.00, "", "coin", "5988000个万能豆", "", "", "", "5988000", 5988000, "", "", 5988000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.998", 300);
+
+
+update tb_w_skus set Visible=1, Image="shop_icon_jszplb.png" where Sku="iPhone.LZDZPK.06";
+update tb_w_skus set Visible=1, Image="shop_icon_sxcylb.png" where Sku="iPhone.LZDZPK.18";
+update tb_w_skus set Visible=1, Image="shop_icon_jwjlb.png" where Sku="iPhone.LZDZPK.30";
+update tb_w_skus set Visible=1, Image="shop_icon_cxmjlb.png" where Sku="iPhone.LZDZPK.45";
+update tb_w_skus set Visible=1, Image="shop_icon_zjlb.png" where Sku="iPhone.LZDZPK.108";
+update tb_w_skus set Visible=1, Image="shop_icon_whyxlb.png" where Sku="iPhone.LZDZPK.168";
+update tb_w_skus set Visible=1, Image="shop_icon_gwjxlb.png" where Sku="iPhone.LZDZPK.288";
+update tb_w_skus set Visible=1, Image="shop_icon_wzlb.png" where Sku="iPhone.LZDZPK.588";
+update tb_w_skus set Visible=1, Image="shop_icon_cjzzlb.png" where Sku="iPhone.LZDZPK.998";

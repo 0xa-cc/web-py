@@ -1,0 +1,93 @@
+iPhone
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.18");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.18", 1, "","", "¥18.00", 18.00, "", "coin", "90000个万能豆", "", "", "", "90000", 90000, "", "首充将加送您18000个万能豆", 108000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.18", 5);
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.18", 1, "", "购买将加送您1800个万能豆", 91800, 0, "");
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.18", 2, "", "购买将加送您2700个万能豆", 92700, 0, "");
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.18", 3, "", "购买将加送您3600个万能豆", 93600, 0, "");
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.18", 4, "", "购买将加送您4500个万能豆", 94500, 0, "");
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.30");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.30", 1, "","", "¥30.00", 30.00, "", "coin", "150000个万能豆", "", "", "", "150000", 150000, "", "首充将加送您30000个万能豆", 180000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.30", 5);
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.30", 1, "", "购买将加送您3000个万能豆", 153000, 0, "");
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.30", 2, "", "购买将加送您4500个万能豆", 154500, 0, "");
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.30", 3, "", "购买将加送您6000个万能豆", 156000, 0, "");
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.30", 4, "", "购买将加送您7500个万能豆", 157500, 0, "");
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPhone", "iPhone.LZDZPK.288");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPhone.LZDZPK.288", 1, "","", "¥288.00", 288.00, "", "coin", "3180000个万能豆", "", "", "", "3180000", 3180000, "", "首充将加送您636000个万能豆", 3816000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPhone.LZDZPK.288", 100);
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.288", 1, "", "购买将加送您63600个万能豆", 3243600, 0, "");
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.288", 2, "", "购买将加送您95400个万能豆", 3275400, 0, "");
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.288", 3, "", "购买将加送您127200个万能豆", 3307200, 0, "");
+insert into tb_w_skus_for_vip (Sku,VipLevel,VipName,VipAddition,VipAmount,VipTime,VipAddition2) values ("iPhone.LZDZPK.288", 4, "", "购买将加送您159000个万能豆", 3339000, 0, "");
+
+
+
+
+iPad
+
+delete from tb_w_skus where sku in (select sku from tb_w_skus_of_channel where channel="iPad");
+delete from tb_w_skus_for_vip where sku in (select sku from tb_w_skus_of_channel where channel="iPad");
+delete from tb_w_score_of_sku where sku in (select sku from tb_w_skus_of_channel where channel="iPad");
+delete from tb_w_skus_of_channel where channel="iPad";
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.06");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.06", 1, "","", "¥6.00", 6.00, "", "coin", "36000个万能豆", "", "", "", "36000", 36000, "", "首充将加送您7200个万能豆", 43200, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.06", 3);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.18");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.18", 1, "","", "¥18.00", 18.00, "", "coin", "108000个万能豆", "", "", "", "108000", 108000, "", "首充将加送您21600个万能豆", 129600, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.18", 5);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.30");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.30", 1, "","", "¥30.00", 30.00, "", "coin", "180000个万能豆", "", "", "", "180000", 180000, "", "首充将加送您36000个万能豆", 216000, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.30", 5);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.48");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.48", 1, "","", "¥48.00", 48.00, "", "coin", "288000个万能豆", "", "", "", "288000", 288000, "", "首充将加送您57600个万能豆", 345600, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.48", 5);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.108");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.108", 1, "","", "¥108.00", 108.00, "", "coin", "648000个万能豆", "", "", "", "648000", 648000, "", "首充将加送您129600个万能豆", 777600, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.108", 30);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.168");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.168", 1, "","", "¥168.00", 168.00, "", "coin", "1008000个万能豆", "", "", "", "1008000", 1008000, "", "首充将加送您201600个万能豆", 1209600, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.168", 30);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.288");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.288", 1, "","", "¥288.00", 288.00, "", "coin", "1728000个万能豆", "", "", "", "1728000", 1728000, "", "首充将加送您345600个万能豆", 2073600, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.288", 100);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.588");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.588", 1, "","", "¥588.00", 588.00, "", "coin", "3528000个万能豆", "", "", "", "3528000", 3528000, "", "首充将加送您705600个万能豆", 4233600, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.588", 300);
+
+
+insert into tb_w_skus_of_channel (Channel, Sku) values ("iPad", "iPad.LZDZPK.978");
+insert into tb_w_skus (Sku,DispOrder,Icon,Image,PriceInfo,Price,Title,Type,Name,Addition,Addition2,Descript,AmountInfo,Amount,FirstName,FirstAddition,FirstAmount,Enable,Visible) values ("iPad.LZDZPK.978", 1, "","", "¥978.00", 978.00, "", "coin", "5868000个万能豆", "", "", "", "5868000", 5868000, "", "首充将加送您1173600个万能豆", 7041600, 1, 0);
+insert into tb_w_score_of_sku (Sku, Score) values ("iPad.LZDZPK.978", 300);
+
+
+update tb_w_skus set Visible=1, Image="shop_icon_jszplb.png" where Price=6.00 and Type="coin";
+update tb_w_skus set Visible=1, Image="shop_icon_sxcylb.png" where Price=18.00 and Type="coin";
+update tb_w_skus set Visible=1, Image="shop_icon_jwjlb.png" where Price=30.00 and Type="coin";
+update tb_w_skus set Visible=1, Image="shop_icon_cxmjlb.png" where Price=48.00 and Type="coin";
+update tb_w_skus set Visible=1, Image="shop_icon_zjlb.png" where Price=108.00 and Type="coin";
+update tb_w_skus set Visible=1, Image="shop_icon_whyxlb.png" where Price=168.00 and Type="coin";
+update tb_w_skus set Visible=1, Image="shop_icon_gwjxlb.png" where Price=288.00 and Type="coin";
+update tb_w_skus set Visible=1, Image="shop_icon_wzlb.png" where Price=588.00 and Type="coin";
+update tb_w_skus set Visible=1, Image="shop_icon_cjzzlb.png" where Price=978.00 and Type="coin";
+

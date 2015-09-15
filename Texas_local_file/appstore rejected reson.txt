@@ -1,0 +1,176 @@
+天天斗地主
+Reasons
+
+11.3: Apps using IAP to purchase physical goods or goods and services used outside of the App will be rejected
+11.6: Content subscriptions using IAP must last a minimum of 7 days and be available to the user from all of their iOS devices
+22.1: Apps must comply with all legal requirements in any location where they are made available to users. It is the developer's obligation to understand and conform to all local laws
+11.6
+
+We found that your app provides a content subscription that is less than the 7-day minimum, which is not in compliance with the App Store Review Guidelines.
+
+Specifically, the length of membership offered is less than 7 days.
+
+Please see the attached screenshot/s for more information.
+
+It would be appropriate to revise your subscription to be at least 7 days long to be in compliance with the Guidelines.
+
+To edit your In App Purchase in iTunes Connect, go to Manage Your In App Purchases, select your app, and click on a Reference Name that is in Developer Action Needed status. Click Edit, make changes to the Display Detail, and click Save. 
+
+NOTE: When an In App Purchase is in Developer Action Needed state, you must make some change to it before it can move to Waiting for Review.
+
+***
+22.1
+
+In addition, we found that your app contains content - or facilitates, enables, or encourages an activity - that is not legal in all the locations in which the app is available, which is not in compliance with the App Store Review Guidelines.
+
+Specifically, your app offers physical goods such as iPhone as prizes.
+
+Please see the attached screenshot for more information.
+
+We encourage you to review your app concept and evaluate whether you can incorporate different content and features that are in compliance with the Guidelines.
+
+***
+11.3
+
+Moreover, we found that your app allows users to purchase physical goods using In App Purchase, which is not in compliance with the App Store Review Guidelines. 
+
+Please see the attached screenshot/s for more information.
+
+
+天天斗地主HD
+Reasons
+
+11.6: Content subscriptions using IAP must last a minimum of 7 days and be available to the user from all of their iOS devices
+11.6
+
+We found that your app provides a content subscription that is less than the 7-day minimum, which is not in compliance with the App Store Review Guidelines.
+
+Specifically, the membership offered in the app is less than 7 days.
+
+Please see the attached screenshot/s for more information.
+
+It would be appropriate to revise your subscription to be at least 7 days long to be in compliance with the Guidelines.
+
+To edit your In App Purchase in iTunes Connect, go to Manage Your In App Purchases, select your app, and click on a Reference Name that is in Developer Action Needed status. Click Edit, make changes to the Display Detail, and click Save. 
+
+NOTE: When an In App Purchase is in Developer Action Needed state, you must make some change to it before it can move to Waiting for Review.
+
+
+单机斗地主
+Reasons
+
+2.3: Apps that do not perform as advertised by the developer will be rejected
+Abandoned Batch
+Program License Agreement
+We found that while you have submitted In App Purchase products for your app, many of the submitted In App Purchases appear to be duplicates or is otherwise is not present in your binary. 
+
+Please take action and delete any unused In App Purchases and submit only those you intend to use with the app.
+
+For more information on how to implement In App Purchase in your application, please refer to the In-App Purchase Programming Guide.
+
+You can learn more about submitting In App Purchases for review in the In-App Purchase Configuration Guide for iTunes Connect.
+
+
+2.3
+
+In addition, we found that your app did not achieve the core functionality described in your marketing materials or release notes, as required by the App Store Review Guidelines.
+
+Specifically, although the app is marketed as a single player game, we found that the app is primarily an online multiplayer game.
+
+It would be appropriate to revise or remove any information that can be misleading or confusing to users, and to ensure that the application's presentation is consistent with the application's contents and functionality.
+
+
+PLA 3.3.12
+
+Furthermore, we found your app uses the iOS Advertising Identifier but does not include ad functionality. This does not comply with the terms of the iOS Developer Program License Agreement, as required by the App Store Review Guidelines.
+
+Specifically, section 3.3.12 of the iOS Developer Program License Agreement states:
+
+"You and Your Applications (and any third party with whom you have contracted to serve advertising) may use the Advertising Identifier, and any information obtained through the use of the Advertising Identifier, only for the purpose of serving advertising. If a user resets the Advertising Identifier, then You agree not to combine, correlate, link or otherwise associate, either directly or indirectly, the prior Advertising Identifier and any derived information with the reset Advertising Identifier."
+
+Please check your code - including any third-party libraries - to remove any instances of:
+
+class: ASIdentifierManager
+selector: advertisingIdentifier
+framework: AdSupport.framework
+
+If you are planning to incorporate ads in a future version, please remove the Advertising Identifier from your app until you have included ad functionality.
+
+To help locate the Advertising Identifier, use the “nm” tool. For information on the “nm” tool, open a terminal window and enter, “man nm.” 
+
+If you do not have access to the libraries source, you may be able to search the compiled binary using the "strings" or "otool" command line tools. The "strings" tool lists the methods that the library calls, and "otool -ov" will list the Objective-C class structures and their defined methods. These techniques can help you narrow down where the problematic code resides.
+
+
+
+手机密令
+Reasons
+
+3.1: Apps or metadata that mentions the name of any other mobile platform will be rejected
+Information Needed
+We have begun the review of your app but aren't able to continue because we need additional information about your app.
+
+At your earliest opportunity, please review the following questions and provide as detailed information as you can in response. The more information you can provide upfront, the sooner we can complete your review.
+
+• What is the purpose of the app?
+• Who are the target users?
+• Is the app intended to provide authentication codes for a specific service, or can it be used for multiple services? Please explain.
+• Are you the developer or owner of all the associated products or services, or does the app also authenticates the user's access to third party products or services?
+• How does the app relate or interface these products or services to achieve the advertised features?
+• Is additional software or hardware required?
+• How does the user/company pay for the service associated with the app? Is it subscription-based or lump-sum? What's the cost, what is it for, and what are the payment options?
+
+Please provide any additional information that you think may be relevant or otherwise assist in the review process.
+
+You can respond to these questions by simply replying to this message.
+
+
+In addition, we are not able to continue with review because we need access to a video that demonstrates your app in use. 
+
+Please be sure that the video shows the app launched from an iOS device, interface with any other devices as would be expected from a normal user, and demonstrate the app's features and functionality in a manner that adequately represents the app's intended purpose.
+
+You can provide a link to a demo video of your app in iTunes Connect. Go to "Manage Your Applications," select your app, click "Edit Information," then scroll to the "Review Notes" section and add the demonstration video access details.
+
+
+3.1
+
+Furthermore, we found that your app and/or its metadata contains inappropriate or irrelevant platform information, which is not in compliance with the App Store Review Guidelines. 
+
+Specifically, we found that the app contains information or reference to support for the Android platform, which is irrelevant information for iOS users.
+
+Providing platform compatibility information, or other general platform references, is not appropriate in the context of the App Store. It would be appropriate to remove this information.
+
+
+单机麻将
+Reasons
+
+2.11: Apps that duplicate Apps already in the App Store may be rejected, particularly if there are many of them, such as fart, burp, flashlight, and Kama Sutra Apps
+3.1: Apps or metadata that mentions the name of any other mobile platform will be rejected
+2.11
+
+We found that your app duplicates the content and functionality of the following apps currently available on the App Store:
+
+联众达人麻将
+联众达人麻将HD
+
+Apps that simply duplicate content and/or functionality create clutter, diminish the overall experience for the end user, and reduce the ability of developers to market their applications. This is not in compliance with the App Store Review Guidelines.
+
+We encourage you to review your app concept and evaluate whether you can incorporate different content and features that are in compliance with the Guidelines.
+
+For app design information, check out the videos: "Getting Started video: The Ingredients of Great iPhone Apps" and "iPhone User Interface Design," available on the iOS Developer Center, and the iOS Human Interface Guidelines in particular, the sections, "Great iOS Apps Embrace the Platform and HI Design Principles" and "Human Interface Principles".
+
+If you cannot - or choose not to - revise your app to be in compliance with the App Store Review Guidelines, you may wish to build an HTML5 web app instead. You can distribute web apps directly on your web site; the App Store does not accept or distribute web apps.
+
+HTML5 is the major new version of HTML and enables audio and video to play natively in the browser without requiring proprietary plug-ins. Using HTML5, web apps can look and behave like native iPhone and iPad apps, and using HTML5's Offline Application Cache, a web app can work even when the device is offline. With web apps, you have flexibility to deliver as much or as little functionality as you desire. 
+
+To get started with iPhone or iPad web apps, please review Getting Started with iPhone Web Apps.
+
+For a description of the HTML elements and attributes you can use in Safari on iPhone, check out Safari HTML Reference: Introduction.
+
+3.1
+
+We also found that your app and/or its metadata contains inappropriate or irrelevant platform information, which is not in compliance with the App Store Review Guidelines. 
+
+We found reference of "Android" in your marketing screenshot. 
+
+Providing future platform compatibility plans, or other general platform references, is not appropriate in the context of the App Store. It would be appropriate to remove this information.
+

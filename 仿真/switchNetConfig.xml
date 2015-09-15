@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<!-- 根IP归属地，返回对应的项-->
+  <!-- ipPort为加速对应的地区。第一组配置为默认配置，请将第一组配置配为国内的配置-->
+  <!-- Terminal为该配置对应的终端，0为所有终端都有，1为cs客户端，2为flash客户端-->
+  <!-- GameMap节点下为游戏房加速的对应关系-->
+  <AccelerationServices ipPort="Default">
+    <service name="List" Terminal="0"  toServer="117.121.18.58" toPort="22104"/>
+    <service name="Jss"  Terminal="0"  toServer="117.121.18.43" toPort="22168"/>
+    <service name="Chat" Terminal="0"  toServer="172.28.41.20" toPort="22376"/>
+    <GameMap>
+      <gameService from="117.121.18.59:22102" to="117.121.18.59:22102"/>
+      <gameService from="117.121.18.60:22102" to="117.121.18.60:22102"/>
+    </GameMap>
+	</AccelerationServices>
+
+  <AccelerationServices ipPort="Others">
+    <service name="List" Terminal="0"  toServer="117.121.18.58" toPort="22104"/>
+    <service name="Jss"  Terminal="0"  toServer="117.121.18.43" toPort="22168"/>
+    <service name="Chat" Terminal="0"  toServer="172.28.41.20" toPort="22376"/>
+    <GameMap>
+      <gameService from="117.121.18.59:22102" to="117.121.18.59:22102"/>
+      <gameService from="117.121.18.60:22102" to="117.121.18.60:22102"/>
+    </GameMap>
+  </AccelerationServices>
+
+</config>

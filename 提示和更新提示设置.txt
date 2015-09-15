@@ -1,0 +1,50 @@
+修改TexasConfig.py中ConfigFromChannel方法：
+dictChannel中根据不同渠道设置以下项
+
+"minver"    需要提示的版本（此版本号以下都会提示）
+
+"url"           要打开的页面，只在更新时使用
+
+"prompt"    提示文字信息，一般直接用固定字符串变量指定
+
+“type”         提示类型，定义如下：
+VERSION_NONE = 0
+VERSION_UPDATE = 11
+VERSION_UPDATE_FORBIDDEN = 12
+VERSION_PROMPT = 13
+VERSION_PROMPT_FORBIDDEN = 14
+
+举例：
+1、iPhone的一个版本需要显示维护提示，不允许用户进入，线上版本号为2.3.4
+找到以下苹果配置项：
+   #苹果渠道
+    "App Store":{"minver-iPhone":"1.0.0", "url-iPhone":"itms-apps://itunes.apple.com/cn/app/de-zhou-ke/id633399763?mt=8", "prompt-iPhone":strPrompt220,  "type-iPhone":VERSION_UPDATE,
+    "minver-iPad":"1.0.0", "url-iPad":"https://itunes.apple.com/cn/app/lian-zhong-de-zhou-pu-ke/id491856427?mt=8", "prompt-iPad":strPrompt220,  "type-iPad":VERSION_UPDATE},#App Store
+
+修改"minver-iPhone"为一个大于线上的版本号，设为2.3.5
+修改"prompt-iPhone"为指定维护内容文字字符串
+修改"type-iPhone"为VERSION_PROMPT_FORBIDDEN
+
+如果是iPad版本，则修改"xxx-iPad"项
+
+2、android的国内渠道thran需要显示维护提示，不允许用户进入，线上版本号为2.3.0
+找到渠道thran配置项：
+"thran":{"minver":"1.0.0", "url":"http://pw.lianzhong.com/Mobile/Download.html", "prompt":strPrompt220,  "type":VERSION_UPDATE},#联众移动中心
+
+修改"minver"为一个大于线上的版本号，设为2.3.1
+修改"prompt"为指定维护内容文字字符串
+修改"type"为VERSION_PROMPT_FORBIDDEN
+
+3、提示更新、强制更新、提示信息
+版本、提示和以上举例一样
+更新还需要修改"url"项，修改为对应的更新页面地址，客户端会用浏览器打开
+修改"type"项对应不同类型提示
+
+4、更新印尼版本Google Play渠道包，提示更新
+找到渠道配置项：
+    "paramida-gp":{"minver":"1.0.0", "url":"http://gp", "prompt":strPromptParamida, "type":VERSION_UPDATE},
+修改"minver"为"1.0.3"
+修改"url"为"https://play.google.com/store/apps/details?id=com.paramida.idpokermonster"
+修改"prompt"对应的变量strPromptParamida数值为"Versi baru datang! UI meja baru memberi lebih banyak seru!"
+修改"type"为VERSION_UPDATE
+

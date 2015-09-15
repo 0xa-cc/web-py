@@ -1,0 +1,22 @@
+移动商城升级20150311：
+更新功能：
+1、定单改为存储到数据库中，定单不再包含有意义数据
+2、取商品支持指定渠道
+
+升级过程：
+1、建表
+drop table tb_w_payload;
+create table tb_w_payload
+(
+   PayloadID        varchar(64) not null comment '定单ID',
+   Sku                  varchar(64) not null comment '商品ID',
+   User                 varchar(128) not null comment '用户名',
+   Role                 varchar(128) comment '角色名',
+   UserData         varchar(128) comment '用户自定义数据',
+   Channel           varchar(16) not null comment '渠道号',
+   recdate            datetime not null comment '生成记录时间',
+   Status               int(1) not null default 0 comment '完成状态，未完成：0，已完成：1',
+   primary key (PayloadID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '商品定单表';
+
+2、升服务

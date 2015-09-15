@@ -1,0 +1,13 @@
+更新提示
+
+更新TexasConfig.py中GetUpdateUrl函数，只要更新以下语句：
+    UPDATE_INFO_FMT = "{\"prompt\":\"2.2.0版更新内容：\n1、全新的保险玩法；\n2、创新的任务活动模式；\n3、优化游戏进程。\", \"url\":\"%s\"}"
+
+
+更新webpy-texas.py中verandcfg函数，打开强制更新或者提示更新，注意此处要修改版本号：
+            #如果是强制升级版本，直接返回出错，不继续下面的流程
+            # if nVersion < TexasPub.Version2Int("2.2.0"):
+            #     dictConf = json.loads(strJson)
+            #     dictConf["code"] = E_VERSION_FORBIDDEN
+            #     dictConf["promptjson"] = TexasConfig.GetUpdateUrl(strChannel, nDeviceType)
+            #     strJson = json.dumps(dictConf, ensure_ascii=False)

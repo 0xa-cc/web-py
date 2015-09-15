@@ -1,0 +1,263 @@
+read update conf:./dyncfg.json
+read acc conf:./switchNetConfig.xml
+{u'\u4e2d\u56fd': [{'Terminal': u'0', 'ToPort': u'22104', 'ToServer': u'172.28.14.157', 'Name': u'List'}, {'Terminal': u'0', 'ToPort': u'22168', 'ToServer': u'172.28.14.120', 'Name': u'Jss'}, {'Terminal': u'0', 'ToPort': u'22376', 'ToServer': u'172.28.14.120', 'Name': u'Chat'}, [{'To': u'172.28.41.80:22102', 'From': u'172.28.41.80:22102'}, {'To': u'172.28.41.79:22102', 'From': u'172.28.41.79:22102'}, {'To': u'172.28.41.78:22102', 'From': u'172.28.41.78:22102'}]], u'\u65e5\u672c': [{'Terminal': u'0', 'ToPort': u'22104', 'ToServer': u'172.28.14.157', 'Name': u'List'}, {'Terminal': u'0', 'ToPort': u'22168', 'ToServer': u'172.28.14.120', 'Name': u'Jss'}, {'Terminal': u'0', 'ToPort': u'22376', 'ToServer': u'172.28.14.120', 'Name': u'Chat'}, [{'To': u'172.28.41.80:22102', 'From': u'172.28.41.80:22102'}, {'To': u'172.28.41.79:22102', 'From': u'172.28.41.79:22102'}, {'To': u'172.28.41.78:22102', 'From': u'172.28.41.78:22102'}]], u'\u672c\u673a\u5730\u5740': [{'Terminal': u'0', 'ToPort': u'22104', 'ToServer': u'172.28.41.79', 'Name': u'List'}, {'Terminal': u'0', 'ToPort': u'22168', 'ToServer': u'172.28.41.205', 'Name': u'Jss'}, {'Terminal': u'0', 'ToPort': u'22376', 'ToServer': u'172.28.41.20', 'Name': u'Chat'}, [{'To': u'172.28.41.80:22102', 'From': u'172.28.41.80:22102'}, {'To': u'172.28.41.79:22102', 'From': u'172.28.41.79:22102'}, {'To': u'172.28.41.78:22102', 'From': u'172.28.41.78:22102'}]], u'\u97e9\u56fd': [{'Terminal': u'0', 'ToPort': u'22104', 'ToServer': u'172.28.14.157', 'Name': u'List'}, {'Terminal': u'0', 'ToPort': u'22168', 'ToServer': u'172.28.14.120', 'Name': u'Jss'}, {'Terminal': u'0', 'ToPort': u'22376', 'ToServer': u'172.28.14.120', 'Name': u'Chat'}, [{'To': u'172.28.41.80:22102', 'From': u'172.28.41.80:22102'}, {'To': u'172.28.41.79:22102', 'From': u'172.28.41.79:22102'}, {'To': u'172.28.41.78:22102', 'From': u'172.28.41.78:22102'}]], u'\u5c40\u57df\u7f51': [{'Terminal': u'0', 'ToPort': u'22104', 'ToServer': u'172.28.41.79', 'Name': u'List'}, {'Terminal': u'0', 'ToPort': u'22168', 'ToServer': u'172.28.41.205', 'Name': u'Jss'}, {'Terminal': u'0', 'ToPort': u'22376', 'ToServer': u'172.28.41.20', 'Name': u'Chat'}, [{'To': u'172.28.41.80:22102', 'From': u'172.28.41.80:22102'}, {'To': u'172.28.41.79:22102', 'From': u'172.28.41.79:22102'}, {'To': u'172.28.41.78:22102', 'From': u'172.28.41.78:22102'}]]}
+Load IpIp conf file:./mydata4vipday2.datx
+[2015-08-26 10:52:07,395][98](CRITICAL) : setdefaultencoding to utf-8
+[2015-08-26 10:52:07,413][109](INFO) : dyncfg.json
+{
+    "code":0,
+    "lastupdate":20140517,
+    "hostinfo":
+    {
+        "thranhost":"172.28.14.87",
+        "thranport":22446,
+        "chatlisthost":"172.28.41.20",
+        "chatlistport":22376,
+        "thirdbindhost":"52.74.49.71",
+        "thirdbindport":22492,
+        "downloadimgurl":"http://hyapp.gfs.lianzhong.com/AvatarServer/services/GetAvatar.ashx?username=%s",
+        "uploadimgurl":"http://hyapp.gfs.lianzhong.com/AvatarServer/services/UploadAvatarByStream.ashx",
+        "newsurl":"http://news.ourgame.com/list1.aspx?templateID=1553",
+        "giftcodeurl":"http://awardcdkeyhw.pokermonster.com",
+        "msgurl":"msghw.pokermonster.com"
+        },
+    "chat":
+    {
+        "quickreply":
+        [
+            {"text":"Kau berani All-in, Aku pun ikut!"},
+            {"text":"All-in saja!!! siapa berani ikut!!!"},
+            {"text":"Cepatlah, all-in atau balik saja!"},
+            {"text":"Aku mau naik chips, berani ikut?"},
+            {"text":"Aduh! Chips naik lagi, rencananya mau cek!"},
+            {"text":"Beruntung hari ini!"},
+            {"text":"Kalah lagi, bisa nggak!"},
+            {"text":"Bohong lagi, aku yakin ikut kamu"},
+            {"text":"Jangan rebut! Nanti ditangkap!"},
+            {"text":"Begini juga bisa menang kok?"},
+            {"text":"Taruhan kecil, tidak bisa donk!"},
+            {"text":"Permainan jelek, nasib!"},
+            {"text":"Kamu aktor yang baik!"},
+            {"text":"Permainan bagus!"}
+        ]
+    },
+    "shop":
+    {
+        "enable":1,
+        "currencycode":"USD",
+        "items":
+        [
+            {
+            "title":"万能豆礼包",
+            "url":"http://172.28.160.103:8080/static/shop.html",
+            "type":"coin"
+            },
+            {
+            "title":"会员礼包",
+            "url":"http://172.28.160.103:8080/static/shop.html",
+            "type":"vip"
+            }
+        ],
+        "paychannels":
+        [
+            {
+                "name":"googleplay",
+                "enable":1
+            },
+            {
+                "name":"mol",
+                "enable":1
+            }
+        ]
+    },
+    "share":
+    {
+        "items":
+        [
+        {
+            "id":"share_rank",
+            "title":"微信推荐【联众德州扑克】",
+            "content":"您的好友(%s)在联众德州扑克万能豆排行榜中拔得头筹！加入游戏一较高下吧！",
+            "url":"http://172.28.14.170:8080/static/wxshare/loding.html?isappinstalled=1",
+            "img":""
+        },
+        {
+            "id":"share_task",
+            "title":"微信推荐【联众德州扑克】",
+            "content":"您的好友(%s)在联众德州扑克活动中领取了奖励！加入游戏更多精彩活动等你参与！",
+            "url":"http://172.28.14.170:8080/static/wxshare/loding.html",
+            "img":""
+        },
+        {
+            "id":"share_result",
+            "title":"微信推荐【联众德州扑克】",
+            "content":"您的好友(%s)在联众德州扑克牌局中获得了胜利！加入游戏一起战斗吧！Just fighting!",
+            "url":"http://172.28.14.170:8080/static/wxshare/loding.html",
+            "img":""
+        },
+        {
+            "id":"share_shop",
+            "title":"微信推荐【联众德州扑克】",
+            "content":"我在联众德州扑克购买了礼包哦！新用户还有更多奖励等你来拿！这么高端的游戏，必须一起玩耍哇！",
+            "url":"http://pw.lianzhong.com/Mobile/Download.html",
+            "img":""
+        }
+        ]
+    }
+}
+
+
+[2015-08-26 10:52:07,414][112](CRITICAL) : DB host:localhost,port:3306,user:root,pass:,database:test
+[2015-08-26 10:52:07,583][145](INFO) : web.config.get('_session') is None
+http://0.0.0.0:8080/
+[2015-08-26 10:52:22,321][109](INFO) : dyncfg.json
+{
+    "code":0,
+    "lastupdate":20140517,
+    "hostinfo":
+    {
+        "thranhost":"172.28.14.87",
+        "thranport":22446,
+        "chatlisthost":"172.28.41.20",
+        "chatlistport":22376,
+        "thirdbindhost":"52.74.49.71",
+        "thirdbindport":22492,
+        "downloadimgurl":"http://hyapp.gfs.lianzhong.com/AvatarServer/services/GetAvatar.ashx?username=%s",
+        "uploadimgurl":"http://hyapp.gfs.lianzhong.com/AvatarServer/services/UploadAvatarByStream.ashx",
+        "newsurl":"http://news.ourgame.com/list1.aspx?templateID=1553",
+        "giftcodeurl":"http://awardcdkeyhw.pokermonster.com",
+        "msgurl":"msghw.pokermonster.com"
+        },
+    "chat":
+    {
+        "quickreply":
+        [
+            {"text":"Kau berani All-in, Aku pun ikut!"},
+            {"text":"All-in saja!!! siapa berani ikut!!!"},
+            {"text":"Cepatlah, all-in atau balik saja!"},
+            {"text":"Aku mau naik chips, berani ikut?"},
+            {"text":"Aduh! Chips naik lagi, rencananya mau cek!"},
+            {"text":"Beruntung hari ini!"},
+            {"text":"Kalah lagi, bisa nggak!"},
+            {"text":"Bohong lagi, aku yakin ikut kamu"},
+            {"text":"Jangan rebut! Nanti ditangkap!"},
+            {"text":"Begini juga bisa menang kok?"},
+            {"text":"Taruhan kecil, tidak bisa donk!"},
+            {"text":"Permainan jelek, nasib!"},
+            {"text":"Kamu aktor yang baik!"},
+            {"text":"Permainan bagus!"}
+        ]
+    },
+    "shop":
+    {
+        "enable":1,
+        "currencycode":"USD",
+        "items":
+        [
+            {
+            "title":"万能豆礼包",
+            "url":"http://172.28.160.103:8080/static/shop.html",
+            "type":"coin"
+            },
+            {
+            "title":"会员礼包",
+            "url":"http://172.28.160.103:8080/static/shop.html",
+            "type":"vip"
+            }
+        ],
+        "paychannels":
+        [
+            {
+                "name":"googleplay",
+                "enable":1
+            },
+            {
+                "name":"mol",
+                "enable":1
+            }
+        ]
+    },
+    "share":
+    {
+        "items":
+        [
+        {
+            "id":"share_rank",
+            "title":"微信推荐【联众德州扑克】",
+            "content":"您的好友(%s)在联众德州扑克万能豆排行榜中拔得头筹！加入游戏一较高下吧！",
+            "url":"http://172.28.14.170:8080/static/wxshare/loding.html?isappinstalled=1",
+            "img":""
+        },
+        {
+            "id":"share_task",
+            "title":"微信推荐【联众德州扑克】",
+            "content":"您的好友(%s)在联众德州扑克活动中领取了奖励！加入游戏更多精彩活动等你参与！",
+            "url":"http://172.28.14.170:8080/static/wxshare/loding.html",
+            "img":""
+        },
+        {
+            "id":"share_result",
+            "title":"微信推荐【联众德州扑克】",
+            "content":"您的好友(%s)在联众德州扑克牌局中获得了胜利！加入游戏一起战斗吧！Just fighting!",
+            "url":"http://172.28.14.170:8080/static/wxshare/loding.html",
+            "img":""
+        },
+        {
+            "id":"share_shop",
+            "title":"微信推荐【联众德州扑克】",
+            "content":"我在联众德州扑克购买了礼包哦！新用户还有更多奖励等你来拿！这么高端的游戏，必须一起玩耍哇！",
+            "url":"http://pw.lianzhong.com/Mobile/Download.html",
+            "img":""
+        }
+        ]
+    }
+}
+
+
+[2015-08-26 10:52:22,321][112](CRITICAL) : DB host:localhost,port:3306,user:root,pass:,database:test
+[2015-08-26 10:52:22,322][162](INFO) : web.config.get('_session') ok
+%E9%80%97%E5%85%9C%E5%9B%9D
+/jss/mbuseraddscore?userId=%E9%80%97%E5%85%9C%E5%9B%9D&type=4&score=1
+[2015-08-26 10:52:22,324][1420](INFO) : CMD_AddScore user:逗兜囝,score:1 ...
+{"message":"通知成功","Value":true,"state":"1"}
+[2015-08-26 10:52:22,367][1434](INFO) : {"message":"通知成功","Value":true,"state":"1"}
+[2015-08-26 10:52:22,367][1446](INFO) : CMD_AddScore user:逗兜囝,score:1 OK
+%E9%80%97%E5%85%9C%E5%9B%9D
+/jss/mbuserbuyvip?userId=%E9%80%97%E5%85%9C%E5%9B%9D&viptype=1
+[2015-08-26 10:52:22,367][1384](INFO) : CMD_AddVip user:逗兜囝,vip type:1 ...
+{"message":"购买成功","Value":true,"state":"1"}
+[2015-08-26 10:52:22,594][1398](INFO) : {"message":"购买成功","Value":true,"state":"1"}
+[2015-08-26 10:52:22,594][1410](INFO) : CMD_AddVip user:逗兜囝,vip type:1 OK
+[2015-08-26 10:52:22,594][1459](INFO) : CMD_AddPowerGameCoin user:supershowplayer,coin:1 ...
+172.28.26.160
+(0, 709)
+[2015-08-26 10:52:22,643][1469](INFO) : CMD_AddPowerGameCoin user:supershowplayer,coin:1 OK
+0.11 (1): SELECT sku FROM tb_w_skus_of_channel WHERE Channel='default'
+127.0.0.1:50900 - - [26/Aug/2015 10:52:23] "HTTP/1.1 GET /check" - 200 OK
+127.0.0.1:50900 - - [26/Aug/2015 10:52:23] "HTTP/1.1 GET /favicon.ico" - 404 not found
+[2015-08-26 10:53:55,970][216](DEBUG) : invalid url:,ip:127.0.0.1
+127.0.0.1:50930 - - [26/Aug/2015 10:53:55] "HTTP/1.1 GET /" - 200 OK
+error code:-103,msg:bad url
+%E9%80%97%E5%85%9C%E5%9B%9D
+/jss/mbuseraddscore?userId=%E9%80%97%E5%85%9C%E5%9B%9D&type=4&score=1
+[2015-08-26 10:53:59,073][1420](INFO) : CMD_AddScore user:逗兜囝,score:1 ...
+{"message":"通知成功","Value":true,"state":"1"}
+[2015-08-26 10:53:59,077][1434](INFO) : {"message":"通知成功","Value":true,"state":"1"}
+[2015-08-26 10:53:59,077][1446](INFO) : CMD_AddScore user:逗兜囝,score:1 OK
+%E9%80%97%E5%85%9C%E5%9B%9D
+/jss/mbuserbuyvip?userId=%E9%80%97%E5%85%9C%E5%9B%9D&viptype=1
+[2015-08-26 10:53:59,077][1384](INFO) : CMD_AddVip user:逗兜囝,vip type:1 ...
+{"message":"购买成功","Value":true,"state":"1"}
+[2015-08-26 10:53:59,306][1398](INFO) : {"message":"购买成功","Value":true,"state":"1"}
+[2015-08-26 10:53:59,306][1410](INFO) : CMD_AddVip user:逗兜囝,vip type:1 OK
+[2015-08-26 10:53:59,306][1459](INFO) : CMD_AddPowerGameCoin user:supershowplayer,coin:1 ...
+172.28.26.160
+(0, 710)
+[2015-08-26 10:53:59,327][1469](INFO) : CMD_AddPowerGameCoin user:supershowplayer,coin:1 OK
+0.0 (1): SELECT sku FROM tb_w_skus_of_channel WHERE Channel='default'
+127.0.0.1:50930 - - [26/Aug/2015 10:53:59] "HTTP/1.1 GET /check" - 200 OK
+[2015-08-26 10:53:59,517][216](DEBUG) : invalid url:chcck,ip:127.0.0.1
+127.0.0.1:50930 - - [26/Aug/2015 10:53:59] "HTTP/1.1 GET /chcck" - 200 OK
+error code:-103,msg:bad url
+[2015-08-26 10:54:04,703][216](DEBUG) : invalid url:chcck,ip:127.0.0.1
+127.0.0.1:50930 - - [26/Aug/2015 10:54:04] "HTTP/1.1 GET /chcck" - 200 OK

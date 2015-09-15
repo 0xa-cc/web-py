@@ -1,0 +1,131 @@
+正式环境
+配置和支付web服务
+iPad
+http://dzpkmobile.ourgame.com
+115.182.20.239（10.2.5.239）    （鲁谷 10.6.1.200 / 117.121.18.200 已废弃，不支持商城）
+Android
+http://dzpkmobile1.ourgame.com
+（电信通 115.182.20.229 / 10.2.5.229）
+iPhone
+115.182.20.239（10.2.5.239）
+
+认证
+"thranhost":"202.108.0.83",
+"thranport":22446,
+
+聊天广播
+"chatlisthost":"202.108.32.52",
+"chatlistport":22376,
+
+图像上传下载
+"downloadimgurl":"http://hyapp.gfs.lianzhong.com/AvatarServer/services/GetAvatar.ashx?username=%s",
+"uploadimgurl":"http://hyapp.gfs.lianzhong.com/AvatarServer/services/UploadAvatarByStream.ashx"
+
+JSS
+117.121.18.42
+117.121.18.203
+
+Matchlist
+117.121.18.25:22104
+
+支付mysql库
+DB_HOST = "10.2.1.74"
+DB_PORT = 3306
+DB_USER = "mdzpk_rw"
+DB_PASS = ""
+DB_DATABASE = "mdzpkweb"
+
+第三方帐号绑定
+202.108.0.121   TCP:22492
+
+****************************************************************************************************************************************
+仿真环境
+配置和支付web服务
+211.154.165.213（10.2.1.213）
+
+认证
+"thranhost":"192.168.1.158",
+"thranport":22446,
+
+聊天广播
+"chatlisthost":"202.108.0.230",
+"chatlistport":22376,
+（202.108.0.230 由172.28.41.20映射到外网IP）
+
+图像上传下载
+"downloadimgurl":"http://hyapp.gfs.lianzhong.com/AvatarServer/services/GetAvatar.ashx?username=%s",
+"uploadimgurl":"http://hyapp.gfs.lianzhong.com/AvatarServer/services/UploadAvatarByStream.ashx"
+
+JSS
+117.121.18.43:8000
+117.121.18.202:8000
+
+Matchlist
+117.121.18.56:22104
+
+第三方帐号绑定
+192.168.1.158   TCP:22492
+
+****************************************************************************************************************************************
+内网环境
+配置和支付web服务
+http://172.28.14.170:8080
+
+认证
+"thranhost":"172.28.14.61",
+"thranport":22446,
+
+聊天广播
+"chatlisthost":"172.28.41.20",
+"chatlistport":22376,
+
+图像上传下载
+"downloadimgurl":"http://172.28.26.143/AvatarServer/services/GetAvatar.ashx?username=%s",
+"uploadimgurl":"http://172.28.26.143/AvatarServer/services/UploadAvatarByStream.ashx"
+
+第三方帐号绑定
+172.28.14.61    TCP:22492
+
+
+****************************************************************************************************************************************
+开发环境
+
+
+****************************************************************************************************************************************
+海外德州内网测试库
+配置和支付web服务
+172.28.41.172
+
+支付mysql库
+DB_HOST = "172.28.41.173"
+DB_PORT = 3306
+DB_USER = "mdzpk_rw"
+DB_PASS = ""
+DB_DATABASE = "mdzpkweb"
+
+
+##########################################################################################################
+
+172.28.14.170
+dev
+0#zFML3ngQ0
+
+/var/www/apps/texas
+
+
+****************************************************************************************************************************************
+海外印尼彼岸版本
+
+gp版本下载
+https://play.google.com/store/apps/details?id=com.paramida.idpokermonster
+
+海外线上支付mysql库： 10.8.8.96 
+
+
+
+##########################################################################################################
+
+http://202.108.0.244:8080/
+映射到
+http://172.28.14.170:8080/
+
